@@ -1,4 +1,3 @@
-!pip install TTS
 import subprocess
 from flask import Flask, request, jsonify
 import base64
@@ -19,14 +18,14 @@ def ask_desa():
     try:
         tts=TTS("tts_models/multilingual/multi-dataset/xtts_v2")
         texto = "Una tormenta tropical es un fenómeno meteorológico que se caracteriza por fuertes vientos, lluvias intensas y turbulencia en el océano. Se forma sobre aguas cálidas en zonas tropicales y se caracteriza por una baja presión atmosférica. Estas tormentas pueden dar origen a huracanes si alcanzan vientos sostenidos de más de 119 km/h. Durante una tormenta tropical, pueden producirse inundaciones, deslizamientos de tierra y otros daños materiales significativos. Por lo tanto, es importante tomar medidas de prevención y seguir las instrucciones de las autoridades ante la llegada de una tormenta tropical."
-        tts.tts_to_file(text=texto,speaker_wav='/content/drive/MyDrive/voz_sere.wav',language="es",file_path = "/content/voz_clonada_prueba_9.wav")
-        tts.tts_to_file(text=texto, file_path="/content/voz_clonada_prueba_9.wav")
+        tts.tts_to_file(text=texto,speaker_wav='Voz_oficial_Desa.wav',language="es",file_path = "voz_clonada.wav")
+        tts.tts_to_file(text=texto, file_path="voz_clonada.wav")
         def audio_to_base64(audio_path):
             with open(audio_path, 'rb') as audio_file:
                 audio_data = audio_file.read()
                 base64_audio = base64.b64encode(audio_data).decode('utf-8')
             return base64_audio
-        response_text = audio_to_base64("/content/voz_clonada_prueba_9.wav")
+        response_text = audio_to_base64("voz_clonada.wav")
         response_json = {
                 "tipo": 'text',
                 "response": response_text # Nueva propiedad agregada
